@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
 app = Flask(__name__)
@@ -23,34 +23,37 @@ def index():
     conn.close()
     return render_template('index.html', users=users)
 
-@app.route('/first_name')
-def index_first_name():
+@app.route('/delete/<int:user_id>', methods=["POST"])
+def delete_user(user_id):
     conn = get_db_connection()
-    users = conn.execute('SELECT first_name FROM users').fetchall()
+    conn.execute('DELETE FROM users WHERE id = ?', (user_id,))
+    conn.commit()
     conn.close()
-    return render_template('index.html', users=users)
+    return redirect(url_for('index'))
 
-@app.route('/age')
-def index_age():
+@app.route('/update/<int:user_id>', methods=['GET'])
+def get_update_user(user_id):
     conn = get_db_connection()
-    users = conn.execute('SELECT age FROM users').fetchall()
+    user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
     conn.close()
-    return render_template('index.html', users=users)
+    if user is None:
+        return "User not found", 404
+    return render_template('update.html', user=user)
 
-@app.route('/last_name')
-def index_last_name():
+@app.route('/update/<int:user_id>', methods=['POST'])
+def post_update_user(user_id):
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    age = request.form['age']
+    phone = request.form['phone']
+    
     conn = get_db_connection()
-    users = conn.execute('SELECT last_name FROM users').fetchall()
+    conn.execute('UPDATE users SET first_name = ?, last_name = ?, age = ?, phone = ? WHERE id = ?',
+                 (first_name, last_name, age, phone, user_id))
+    conn.commit()
     conn.close()
-    return render_template('index.html', users=users)
-
-@app.route('/phone')
-def index_phone():
-    conn = get_db_connection()
-    users = conn.execute('SELECT phone FROM users').fetchall()
-    conn.close()
-    return render_template('index.html', users=users)
-
+    
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     init_db()
