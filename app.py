@@ -16,6 +16,7 @@ def init_db():
     conn.commit()
     conn.close()
 
+# Todos los datos
 @app.route('/')
 def index():
     conn = get_db_connection()
@@ -23,6 +24,39 @@ def index():
     conn.close()
     return render_template('index.html', users=users)
 
+# Datos por edad
+@app.route('/age')
+def index_age():
+    conn = get_db_connection()
+    users = conn.execute('SELECT age FROM users').fetchall()
+    conn.close()
+    return render_template('index.html', users=users)
+
+# Datos por nombre
+@app.route('/first_name')
+def index_first_name():
+    conn = get_db_connection()
+    users = conn.execute('SELECT first_name FROM users').fetchall()
+    conn.close()
+    return render_template('index.html', users=users)
+
+# Datos por apellido
+@app.route('/last_name')
+def index_last_name():
+    conn = get_db_connection()
+    users = conn.execute('SELECT last_name FROM users').fetchall()
+    conn.close()
+    return render_template('index.html', users=users)
+
+# Datos por número de teléfono
+@app.route('/phone')
+def index_phone():
+    conn = get_db_connection()
+    users = conn.execute('SELECT phone FROM users').fetchall()
+    conn.close()
+    return render_template('index.html', users=users)
+
+# Añadir usuario
 @app.route('/add_user', methods=['POST'])
 def add_user():
     if request.method == 'POST':
@@ -37,6 +71,7 @@ def add_user():
         conn.close()
     return redirect('/')
 
+# Borrar usuario por id
 @app.route('/delete_user/<int:id>', methods=['POST'])
 def delete_user(id):
     if request.method == 'POST':
