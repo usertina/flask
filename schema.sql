@@ -15,11 +15,12 @@ INSERT INTO users (first_name, last_name, age, phone) VALUES
 ('Keltum', 'Debour', 28, '7890123456'),
 ('Oussama', 'Brahmi', 33, '3216549870'),
 ('Jonathan', 'Ibañez', 33, '3216577870'),
-('Aintzane', 'Goffard', 31, '3216277870'),
+('Aintzane', 'Goffard', 42, '3216277870'),
 ('Abderrahmane', 'Hichou', 17, '3216277870'),
 ('Elias', 'Riquelme', 34, '3216277970'),
 ('Jhony', 'Dominguez', 28, '3216277875'),
-('Andress', 'Echeberry', 34, '3218277870'),
+('Andress', 'Echeverry', 44, '3218277870'),
 ('Jesus', 'Romero', 20, '3216177870'),
 ('Jhon', 'Davila', 27, '3216177871'),
-('Lurdes', 'Espinola', 30, '3216177872');
+('Lourdes', 'Espinola', 30, '3216177872'),
+('Ryan', 'St', 19, '3210007872');
