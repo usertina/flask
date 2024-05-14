@@ -3,10 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>User List</title>
+    <style>
+        body {
+            background-color: #f4f4f4; /* Color de fondo */
+            font-family: Arial, sans-serif; /* Tipo de fuente */
+        }
+
+        table {
+            width: 50%; /* Ancho de la tabla */
+            margin: 0 auto; /* Centrar la tabla horizontalmente */
+            border-collapse: collapse;
+            background-color: white; /* Color de fondo de la tabla */
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center; /* Centrar texto */
+            border: 1px solid #ddd; /* Borde de las celdas */
+        }
+
+        th {
+            background-color: #4CAF50; /* Color de fondo de las celdas de encabezado */
+            color: white; /* Color del texto del encabezado */
+        }
+
+        form {
+            margin-top: 20px; /* Espacio entre la tabla y el formulario */
+            text-align: center; /* Centrar elementos del formulario */
+        }
+
+        input[type="text"],
+        input[type="number"],
+        button[type="submit"] {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049; /* Cambio de color al pasar el cursor sobre el botón */
+        }
+    </style>
 </head>
 <body>
     <h1>Lista de Usuarios</h1>
-    <table border="1">
+    <table>
         <tr>
             <th>Nombre</th>
             <th>Apellido</th>
@@ -52,6 +96,5 @@
             </tr>
         </form>
     </table>
-    
 </body>
 </html>
